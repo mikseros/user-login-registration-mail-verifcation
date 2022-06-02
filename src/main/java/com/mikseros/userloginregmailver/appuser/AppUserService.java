@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mikseros.userloginregmailver.registration.token.ConfirmationToken;
+import com.mikseros.userloginregmailver.registration.token.ConfirmationTokenService;
 
 import lombok.AllArgsConstructor;
 
@@ -22,6 +23,7 @@ public class AppUserService implements UserDetailsService {
 	
 	private final AppUserRepository appUserRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	private final ConfirmationTokenService confirmationTokenService;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) 
@@ -54,6 +56,10 @@ public class AppUserService implements UserDetailsService {
 				appUser
 		);
 		
-		return "OK";
+		confirmationTokenService.saveConfirmationToken(confirmationToken);
+		
+		// TODO: send email
+		
+		return token;
 	}
 }
