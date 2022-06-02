@@ -6,7 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.mikseros.userloginregmailver.appuser.AppUser;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,13 +45,18 @@ public class ConfirmationToken {
 	
 	private LocalDateTime confirmedAt;
 	
+	@ManyToOne
+	@JoinColumn(nullable = false, name = "app_user_id")
+	private AppUser appUser;
+	
 	public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt,
-			LocalDateTime confirmedAt) {
+			LocalDateTime confirmedAt, AppUser appUser) {
 		super();
 		this.token = token;
 		this.createdAt = createdAt;
 		this.expiresAt = expiresAt;
 		this.confirmedAt = confirmedAt;
+		this.appUser = appUser;
 	}
 	
 	
