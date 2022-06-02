@@ -50,12 +50,11 @@ public class ConfirmationToken {
 	private AppUser appUser;
 	
 	public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt,
-			LocalDateTime confirmedAt, AppUser appUser) {
+			AppUser appUser) {
 		super();
 		this.token = token;
 		this.createdAt = createdAt;
 		this.expiresAt = expiresAt;
-		this.confirmedAt = confirmedAt;
 		this.appUser = appUser;
 	}
 	
