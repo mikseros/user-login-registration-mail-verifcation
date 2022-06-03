@@ -30,6 +30,7 @@ public class EmailService implements EmailSender {
 			helper.setTo(to);
 			helper.setSubject("Confirm your email");
 			helper.setFrom("hello@mikseros.com");
+			mailSender.send(mimeMessage);
 		} catch (MessagingException e) {
 			LOGGER.error("Failed to send email", e);
 			throw new IllegalStateException("Failed to send email");
